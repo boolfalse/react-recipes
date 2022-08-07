@@ -12,7 +12,7 @@ const Popular = () => {
     }, []);
 
     const getPopular = async () => {
-        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_URL}/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&number=9`);
+        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY}/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&number=9`);
         const result = await data.json();
         setPopularState(result.recipes);
     }
