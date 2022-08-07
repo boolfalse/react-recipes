@@ -17,6 +17,12 @@ cd react-recipes
 npm install
 ```
 
+- Get the API key from [Spoonacular food API](https://spoonacular.com/food-api/console#Profile) and setup the .env variables like this:
+```dotenv
+SPOONACULAR_API_KEY="<API_KEY>"
+SPOONACULAR_API_URL="https://api.spoonacular.com/"
+```
+
 - Run the app:
 ```bash
 - Run the application:
