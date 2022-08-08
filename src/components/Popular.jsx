@@ -8,13 +8,24 @@ const Popular = () => {
     const [popularState, setPopularState] = useState([]);
 
     useEffect(() => {
-        getPopular().then(r => console.log(r)).catch(e => console.log(e));
+        const lsPopular = localStorage.getItem("popular");
+        if (lsPopular) {
+            setPopularState(JSON.parse(lsPopular));
+        } else {
+            getPopular()
+                .then(result => {
+                    localStorage.setItem("popular", JSON.stringify(result.recipes));
+                    setPopularState(result.recipes);
+                })
+                .catch(err => {
+                    alert(err.message || "Something wrong with the API!");
+                });
+        }
     }, []);
 
     const getPopular = async () => {
         const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY}/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&number=9`);
-        const result = await data.json();
-        setPopularState(result.recipes);
+        return await data.json();
     }
 
     return (
