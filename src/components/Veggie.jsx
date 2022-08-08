@@ -1,8 +1,102 @@
 
+import {useEffect, useState} from "react";
+import styled from "styled-components";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+
 const Veggie = () => {
+    const [veggieState, setVeggieState] = useState([]);
+
+    useEffect(() => {
+        const lsVeggie = localStorage.getItem("veggie");
+        if (lsVeggie) {
+            setVeggieState(JSON.parse(lsVeggie));
+        } else {
+            getVeggie()
+                .then(result => {
+                    localStorage.setItem("veggie", JSON.stringify(result.recipes));
+                    setVeggieState(result.recipes);
+                })
+                .catch(err => {
+                    alert(err.message || "Something wrong with the API!");
+                });
+        }
+    }, []);
+
+    const getVeggie = async () => {
+        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY}/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&number=9&tags=vegetarian`);
+        return await data.json();
+    }
+
     return (
-        <div>Veggie</div>
+        <div>
+            <StyledWrapper>
+                <h3>Our Vegetarian Picks</h3>
+                <Splide options={{
+                    perPage: 3,
+                    arrows: false,
+                    pagination: false,
+                    drag: 'free',
+                    gap: '5rem'
+                }}>
+                    {veggieState.map((recipe) => {
+                        return (
+                            <SplideSlide key={recipe.id}>
+                                <StyledCard>
+                                    <p>{recipe.title}</p>
+                                    <img src={recipe.image} alt={recipe.creditsText} />
+                                    <StyledGradient />
+                                </StyledCard>
+                            </SplideSlide>
+                        )
+                    })}
+                </Splide>
+            </StyledWrapper>
+        </div>
     )
 }
+
+const StyledWrapper = styled.div`
+    margin: 4rem 0rem;
+`;
+const StyledCard = styled.div`
+    min-height: 25rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    position: relative;
+    
+    img {
+        border-radius: 2rem;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    p {
+        position: absolute;
+        z-index: 10;
+        left: 50%;
+        bottom: 0%;
+        transform: translate(-50%, 0%);
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1rem;
+        height: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+`;
+
+const StyledGradient = styled.div`
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5));
+`;
 
 export default Veggie;
