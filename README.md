@@ -17,7 +17,7 @@ cd react-recipes
 npm install
 ```
 
-- Get the API key from [Spoonacular food API](https://spoonacular.com/food-api/console#Profile) and setup the .env variables like this:
+- Get the API key from [Spoonacular food API](https://spoonacular.com/food-api/console#Profile) and set up the .env variables like this:
 ```dotenv
 REACT_APP_SPOONACULAR_API_KEY="<API_KEY>"
 REACT_APP_SPOONACULAR_API_GATEWAY="https://api.spoonacular.com"
@@ -37,3 +37,4 @@ npm run build
 #### Resources:
 
 - [React Crash Course - Build A Full Recipe App Tutorial - 2022.03.10](https://www.youtube.com/watch?v=xc4uOzlndAk)
+- [Another ready repo for this project](https://github.com/ikramdeveloper/spoonacular-recipes-app-react)
