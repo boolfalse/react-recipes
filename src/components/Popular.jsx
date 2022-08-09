@@ -27,7 +27,7 @@ const Popular = () => {
     }, []);
 
     const getPopular = async () => {
-        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY}/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&number=9`);
+        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY || 'https://api.spoonacular.com'}/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY || 'd513a46f99df418eac54eb0025930f5d'}&number=9`);
         return await data.json();
     }
 

@@ -9,7 +9,7 @@ const Searched = () => {
     const { term } = useParams();
 
     const getSearched = async (searchTerm) => {
-        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY}/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&query=${searchTerm}&number=9`);
+        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY || 'https://api.spoonacular.com'}/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY || 'd513a46f99df418eac54eb0025930f5d'}&query=${searchTerm}&number=9`);
         return await data.json();
     }
 
