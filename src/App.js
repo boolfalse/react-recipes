@@ -1,12 +1,15 @@
 
 import Pages from "./layouts/PageWrapper";
-import Categories from "./components/Categories";
+import Categories from "./layouts/Categories";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
     return (
         <div className="App">
-            <Categories />
-            <Pages />
+            <BrowserRouter>
+                <Categories />
+                <Pages />
+            </BrowserRouter>
         </div>
     );
 }
