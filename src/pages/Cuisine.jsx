@@ -28,16 +28,19 @@ const Cuisine = () => {
     ]);
 
     return (
-        <StyledGrid>{cuisineState.map(recipe => {
-            return (
-                <StyledCard key={recipe.id}>
+        <StyledGrid animate={{opacity: 1}}
+                    initial={{opacity: 0}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 0.25}}>
+            {cuisineState.map(recipe => {
+                return (<StyledCard key={recipe.id}>
                     <Link to={`/recipe/${recipe.id}`}>
                         <img src={recipe.image} alt={recipe.title} />
                         <h4>{recipe.title}</h4>
                     </Link>
-                </StyledCard>
-            )
-        })}</StyledGrid>
+                </StyledCard>)
+            })}
+        </StyledGrid>
     );
 }
 
