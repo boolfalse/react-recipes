@@ -11,7 +11,9 @@ const Cuisine = () => {
     } = useParams();
 
     const getCuisine = async (category) => {
-        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY || 'https://api.spoonacular.com'}/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY || 'd513a46f99df418eac54eb0025930f5d'}&cuisine=${category}&number=8`);
+        const apiGateway = process.env.REACT_APP_SPOONACULAR_API_GATEWAY || 'https://api.spoonacular.com';
+        const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY || 'd513a46f99df418eac54eb0025930f5d'
+        const data = await fetch(`${apiGateway}/recipes/complexSearch?apiKey=${apiKey}&cuisine=${category}&number=8`);
         return await data.json();
     }
 

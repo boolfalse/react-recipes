@@ -11,7 +11,9 @@ const Recipe = () => {
     const { id } = useParams();
 
     const getRecipeDetails = async (recipeId) => {
-        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY || 'https://api.spoonacular.com'}/recipes/${recipeId}/information?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY || 'd513a46f99df418eac54eb0025930f5d'}`);
+        const apiGateway = process.env.REACT_APP_SPOONACULAR_API_GATEWAY || 'https://api.spoonacular.com';
+        const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY || 'd513a46f99df418eac54eb0025930f5d'
+        const data = await fetch(`${apiGateway}/recipes/${recipeId}/information?apiKey=${apiKey}`);
         return await data.json();
     }
 

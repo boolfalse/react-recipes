@@ -27,7 +27,9 @@ const Veggie = () => {
     }, []);
 
     const getVeggie = async () => {
-        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY || 'https://api.spoonacular.com'}/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY || 'd513a46f99df418eac54eb0025930f5d'}&number=9&tags=vegetarian`);
+        const apiGateway = process.env.REACT_APP_SPOONACULAR_API_GATEWAY || 'https://api.spoonacular.com';
+        const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY || 'd513a46f99df418eac54eb0025930f5d'
+        const data = await fetch(`${apiGateway}/recipes/random?apiKey=${apiKey}&number=9&tags=vegetarian`);
         return await data.json();
     }
 
