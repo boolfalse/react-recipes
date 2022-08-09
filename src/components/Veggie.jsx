@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import StyledWrapper from "../styled/Wrapper";
-import StyledCard from "../styled/Card";
+import StyledRecipeCard from "../styled/RecipeCard";
 import StyledGradient from "../styled/Gradient";
 
 const Veggie = () => {
@@ -44,11 +44,11 @@ const Veggie = () => {
                     {veggieState.map((recipe) => {
                         return (
                             <SplideSlide key={recipe.id}>
-                                <StyledCard>
+                                <StyledRecipeCard>
                                     <p>{recipe.title}</p>
                                     <img src={recipe.image} alt={recipe.creditsText} />
                                     <StyledGradient />
-                                </StyledCard>
+                                </StyledRecipeCard>
                             </SplideSlide>
                         )
                     })}

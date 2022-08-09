@@ -1,6 +1,8 @@
 
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import StyledGrid from "../styled/Grid";
+import StyledCard from "../styled/Card";
 
 const Cuisine = () => {
     const [cuisineState, setCuisineState] = useState([]);
@@ -9,7 +11,7 @@ const Cuisine = () => {
     } = useParams();
 
     const getCuisine = async (category) => {
-        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY}/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&cuisine=${category}&number=9`);
+        const data = await fetch(`${process.env.REACT_APP_SPOONACULAR_API_GATEWAY}/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}&cuisine=${category}&number=8`);
         return await data.json();
     }
 
@@ -26,10 +28,14 @@ const Cuisine = () => {
     ]);
 
     return (
-        <div>
-            <h2>{cuisineState.length}</h2>
-            <h2>{categoryParam}</h2>
-        </div>
+        <StyledGrid>{cuisineState.map(item => {
+            return (
+                <StyledCard key={item.id}>
+                    <img src={item.image} alt={item.title} />
+                    <h4>{item.title}</h4>
+                </StyledCard>
+            )
+        })}</StyledGrid>
     );
 }
 

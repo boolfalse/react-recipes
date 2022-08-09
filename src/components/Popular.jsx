@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import StyledGradient from "../styled/Gradient";
-import StyledCard from "../styled/Card";
+import StyledRecipeCard from "../styled/RecipeCard";
 import StyledWrapper from "../styled/Wrapper";
 
 const Popular = () => {
@@ -44,11 +44,11 @@ const Popular = () => {
                     {popularState.map((recipe) => {
                         return (
                             <SplideSlide key={recipe.id}>
-                                <StyledCard>
+                                <StyledRecipeCard>
                                     <p>{recipe.title}</p>
                                     <img src={recipe.image} alt={recipe.creditsText} />
                                     <StyledGradient />
-                                </StyledCard>
+                                </StyledRecipeCard>
                             </SplideSlide>
                         )
                     })}
