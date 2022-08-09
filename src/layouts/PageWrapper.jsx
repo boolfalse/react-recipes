@@ -5,6 +5,7 @@ import Cuisine from "../pages/Cuisine";
 import Searched from "../pages/Searched";
 import Recipe from "../pages/Recipe";
 import {AnimatePresence} from "framer-motion";
+import NotFound from "../pages/NotFound";
 
 const PageWrapper = () => {
     const location = useLocation();
@@ -15,6 +16,7 @@ const PageWrapper = () => {
                 <Route path="/cuisine/:category" element={<Cuisine />} />
                 <Route path="/searched/:term" element={<Searched />} />
                 <Route path="/recipe/:id" element={<Recipe />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </AnimatePresence>
     );
