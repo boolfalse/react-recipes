@@ -6,6 +6,7 @@ import StyledWrapper from "../styled/Wrapper";
 import StyledRecipeCard from "../styled/RecipeCard";
 import StyledGradient from "../styled/Gradient";
 import {Link} from "react-router-dom";
+import ErrorPage from "../pages/ErrorPage";
 
 const Veggie = () => {
     const [veggieState, setVeggieState] = useState([]);
@@ -34,7 +35,7 @@ const Veggie = () => {
     }
 
     return (
-        <div>
+        veggieState ? <div>
             <StyledWrapper>
                 <h3>Our Vegetarian Picks</h3>
                 <Splide options={{
@@ -59,7 +60,7 @@ const Veggie = () => {
                     })}
                 </Splide>
             </StyledWrapper>
-        </div>
+        </div> : <ErrorPage title='Oops!' description='Something went wrong' />
     )
 }
 

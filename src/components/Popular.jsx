@@ -6,6 +6,7 @@ import StyledGradient from "../styled/Gradient";
 import StyledRecipeCard from "../styled/RecipeCard";
 import StyledWrapper from "../styled/Wrapper";
 import {Link} from "react-router-dom";
+import ErrorPage from "../pages/ErrorPage";
 
 const Popular = () => {
     const [popularState, setPopularState] = useState([]);
@@ -34,7 +35,7 @@ const Popular = () => {
     }
 
     return (
-        <div>
+        popularState ? <div>
             <StyledWrapper>
                 <h3>Popular Picks</h3>
                 <Splide options={{
@@ -59,7 +60,7 @@ const Popular = () => {
                     })}
                 </Splide>
             </StyledWrapper>
-        </div>
+        </div> : <ErrorPage title='Oops!' description='Something went wrong' />
     )
 }
 

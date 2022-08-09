@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import StyledRecipeDetails from "../styled/RecipeDetails";
 import StyledRecipeDetailsInfo from "../styled/DetailsInfo";
 import StyledDetailsButton from "../styled/DetailsButton";
+import ErrorPage from "./ErrorPage";
 
 const Recipe = () => {
     const [activeTabState, setActiveTabState] = useState('ingredients');
@@ -60,7 +61,7 @@ const Recipe = () => {
                 }
             </StyledRecipeDetailsInfo>
         </StyledRecipeDetails>
-    ) : 'Loading...';
+    ) : <ErrorPage title='Oops!' description='Something went wrong' />
 }
 
 export default Recipe;

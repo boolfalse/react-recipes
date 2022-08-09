@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import StyledGrid from "../styled/Grid";
 import StyledCard from "../styled/Card";
+import ErrorPage from "./ErrorPage";
 
 const Cuisine = () => {
     const [cuisineState, setCuisineState] = useState([]);
@@ -30,7 +31,7 @@ const Cuisine = () => {
     ]);
 
     return (
-        <StyledGrid animate={{opacity: 1}}
+        cuisineState ? <StyledGrid animate={{opacity: 1}}
                     initial={{opacity: 0}}
                     exit={{opacity: 0}}
                     transition={{duration: 0.25}}>
@@ -42,7 +43,7 @@ const Cuisine = () => {
                     </Link>
                 </StyledCard>)
             })}
-        </StyledGrid>
+        </StyledGrid> : <ErrorPage title='Oops!' description='Something went wrong' />
     );
 }
 

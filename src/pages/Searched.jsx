@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import StyledGrid from "../styled/Grid";
 import StyledCard from "../styled/Card";
+import ErrorPage from "./ErrorPage";
 
 const Searched = () => {
     const [searchedState, setSearchedState] = useState([]);
@@ -28,7 +29,7 @@ const Searched = () => {
     ]);
 
     return (
-        <StyledGrid>{searchedState.map(recipe => {
+        searchedState ? <StyledGrid>{searchedState.map(recipe => {
             return (
                 <StyledCard key={recipe.id}>
                     <Link to={`/recipe/${recipe.id}`}>
@@ -37,7 +38,7 @@ const Searched = () => {
                     </Link>
                 </StyledCard>
             )
-        })}</StyledGrid>
+        })}</StyledGrid> : <ErrorPage title='Oops!' description='Something went wrong' />
     );
 }
 

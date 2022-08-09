@@ -1,10 +1,10 @@
 
 import styled from "styled-components";
 
-const StyledNotFound = styled.div`
+const StyledErrorPage = styled.div`
     justify-content: center;
     margin: auto;
     text-align: center;
 `;
 
-export default StyledNotFound;
+export default StyledErrorPage;
