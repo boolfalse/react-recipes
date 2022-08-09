@@ -5,6 +5,7 @@ import '@splidejs/react-splide/css';
 import StyledGradient from "../styled/Gradient";
 import StyledRecipeCard from "../styled/RecipeCard";
 import StyledWrapper from "../styled/Wrapper";
+import {Link} from "react-router-dom";
 
 const Popular = () => {
     const [popularState, setPopularState] = useState([]);
@@ -20,7 +21,7 @@ const Popular = () => {
                     setPopularState(result.recipes);
                 })
                 .catch(err => {
-                    alert(err.message || "Something wrong with the API!");
+                    console.log(err.message || "Something wrong with the API!");
                 });
         }
     }, []);
@@ -45,9 +46,11 @@ const Popular = () => {
                         return (
                             <SplideSlide key={recipe.id}>
                                 <StyledRecipeCard>
-                                    <p>{recipe.title}</p>
-                                    <img src={recipe.image} alt={recipe.creditsText} />
-                                    <StyledGradient />
+                                    <Link to={`/recipe/${recipe.id}`}>
+                                        <p>{recipe.title}</p>
+                                        <img src={recipe.image} alt={recipe.creditsText} />
+                                        <StyledGradient />
+                                    </Link>
                                 </StyledRecipeCard>
                             </SplideSlide>
                         )

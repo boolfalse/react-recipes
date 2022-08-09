@@ -5,6 +5,7 @@ import '@splidejs/react-splide/css';
 import StyledWrapper from "../styled/Wrapper";
 import StyledRecipeCard from "../styled/RecipeCard";
 import StyledGradient from "../styled/Gradient";
+import {Link} from "react-router-dom";
 
 const Veggie = () => {
     const [veggieState, setVeggieState] = useState([]);
@@ -20,7 +21,7 @@ const Veggie = () => {
                     setVeggieState(result.recipes);
                 })
                 .catch(err => {
-                    alert(err.message || "Something wrong with the API!");
+                    console.log(err.message || "Something wrong with the API!");
                 });
         }
     }, []);
@@ -45,9 +46,11 @@ const Veggie = () => {
                         return (
                             <SplideSlide key={recipe.id}>
                                 <StyledRecipeCard>
-                                    <p>{recipe.title}</p>
-                                    <img src={recipe.image} alt={recipe.creditsText} />
-                                    <StyledGradient />
+                                    <Link to={`/recipe/${recipe.id}`}>
+                                        <p>{recipe.title}</p>
+                                        <img src={recipe.image} alt={recipe.creditsText} />
+                                        <StyledGradient />
+                                    </Link>
                                 </StyledRecipeCard>
                             </SplideSlide>
                         )
